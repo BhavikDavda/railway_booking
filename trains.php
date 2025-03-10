@@ -1,7 +1,7 @@
 <?php
 include 'config.php';
 
-// Create Train
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $train_name = $_POST['train_name'];
     $source = $_POST['source'];
@@ -13,13 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo $conn->query($query) ? "Train Added" : "Error: " . $conn->error;
 }
 
-// Read Trains
+
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $result = $conn->query("SELECT * FROM trains");
     echo json_encode($result->fetch_all(MYSQLI_ASSOC));
 }
 
-// Update Train
+
 if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     parse_str(file_get_contents("php://input"), $data);
     $id = $data['train_id'];
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     echo $conn->query($query) ? "Train Updated" : "Error: " . $conn->error;
 }
 
-// Delete Train
+
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
     parse_str(file_get_contents("php://input"), $data);
     $id = $data['train_id'];
