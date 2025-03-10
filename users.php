@@ -1,7 +1,6 @@
 <?php
 include 'config.php';
 
-// Create User
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -11,13 +10,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo $conn->query($query) ? "User Added" : "Error: " . $conn->error;
 }
 
-// Read Users
+
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $result = $conn->query("SELECT * FROM users");
     echo json_encode($result->fetch_all(MYSQLI_ASSOC));
 }
 
-// Update User
+
 if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     parse_str(file_get_contents("php://input"), $data);
     $id = $data['user_id'];
@@ -29,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     echo $conn->query($query) ? "User Updated" : "Error: " . $conn->error;
 }
 
-// Delete User
+
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
     parse_str(file_get_contents("php://input"), $data);
     $id = $data['user_id'];
